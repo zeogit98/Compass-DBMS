@@ -1,0 +1,49 @@
+digraph ERD {
+	rankdir=LR size="8,5"
+	User [label="User
+user_id (PK)
+username
+password
+last_login" shape=record]
+	Manufacturer [label="Manufacturer
+manufacturer_id (PK)
+name
+contact_info" shape=record]
+	Compass [label="Compass
+compass_id (PK)
+model
+creation_date
+user_id (FK)
+manufacturer_id (FK)" shape=record]
+	Calibration [label="Calibration
+calibration_id (PK)
+compass_id (FK)
+calibration_date
+status
+notes" shape=record]
+	Measurement [label="Measurement
+measurement_id (PK)
+compass_id (FK)
+timestamp
+pitch
+magnetic_direction" shape=record]
+	Destination [label="Destination
+destination_id (PK)
+name
+latitude
+longitude" shape=record]
+	Location [label="Location
+location_id (PK)
+compass_id (FK)
+destination_id (FK)
+timestamp
+latitude
+longitude
+sequence_number" shape=record]
+	Compass -> User
+	Compass -> Manufacturer
+	Calibration -> Compass
+	Measurement -> Compass
+	Location -> Compass
+	Location -> Destination
+}
